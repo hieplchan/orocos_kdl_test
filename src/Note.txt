@@ -1,0 +1,17 @@
+g++ -L./lib -I/usr/include/python2.7 -I./inc -I./inc/eigen3 src.cpp -lorocos-kdl -o main
+export LD_LIBRARY_PATH=/home/hiep/Desktop/orocos_hal/lib:$LD_LIBRARY_PATH
+printenv | grep PATH
+https://isocpp.org/wiki/faq/mixing-c-and-cpp
+
+g++ -pipe -O2 -fPIC -c struc.cpp
+
+extern "C"
+export LD_LIBRARY_PATH=/home/hiep/Desktop/orocos_hal:$LD_LIBRARY_PATH
+
+g++ -c -fPIC -L./lib -I/usr/include/python2.7 -I./inc -I./inc/eigen3 -lorocos-kdl test.cpp -o test.o
+g++ -fPIC -shared test.o -o libtest.so
+gcc -L. -L./lib -I./inc -I./inc/eigen3 test.c -ltest -lorocos-kdl -o main
+export LD_LIBRARY_PATH=/home/hiep/Desktop/orocos_hal:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/hiep/Desktop/orocos_hal/lib:$LD_LIBRARY_PATH
+
+gcc -L. -L./lib -I./inc -I./inc/eigen3 test.c -ltest -lorocos-kdl -o main
